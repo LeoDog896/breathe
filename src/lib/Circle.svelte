@@ -20,7 +20,7 @@
                     radius.set(dimension)
                 }, 5000)
             }, 5000)
-        }, 1000)
+        }, 2000)
     })
 </script>
 
