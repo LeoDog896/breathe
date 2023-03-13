@@ -10,6 +10,10 @@
 
     let dimension = 300;
 
+    async function timeout(time: number) {
+        await new Promise(resolve => setTimeout(resolve, time))
+    }
+
     async function setAndWait(time: number, type: "expand" | "contract") {
         if (type == "expand") {
             radius.set(dimension)
@@ -17,15 +21,20 @@
             radius.set(0)
         }
 
-        await new Promise(resolve => setTimeout(resolve, time))
+        await timeout(time)
     }
 
     onMount(async () => {
-        await setAndWait(2000, "expand")
-        await setAndWait(5000, "contract")
+        await timeout(2000)
         await setAndWait(5000, "expand")
         await setAndWait(5000, "contract")
         await setAndWait(5000, "expand")
+        await setAndWait(5000, "contract")
+        await setAndWait(5000, "expand")
+        await setAndWait(200, "contract")
+        await setAndWait(10000, "expand")
+        await setAndWait(300, "contract")
+        await setAndWait(10000, "expand")
     })
 </script>
 
