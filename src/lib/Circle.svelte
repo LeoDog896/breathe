@@ -24,6 +24,8 @@
         await setAndWait(2000, "expand")
         await setAndWait(5000, "contract")
         await setAndWait(5000, "expand")
+        await setAndWait(5000, "contract")
+        await setAndWait(5000, "expand")
     })
 </script>
 
