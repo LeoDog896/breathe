@@ -8,10 +8,7 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter(),
-		paths: {
-			base: '/breathe'
-		}
+		adapter: adapter()
 	}
 };
 
