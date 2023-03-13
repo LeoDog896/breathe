@@ -1,35 +1,31 @@
 <script lang="ts">
-    import "../app.css" 
-    import { tweened } from 'svelte/motion';
-	import { cubicOut } from 'svelte/easing';
+	import Circle from "../lib/Circle.svelte";
+    import { fly } from 'svelte/transition';
+	import { onMount } from "svelte";
 
-	const radius = tweened(0, {
-		duration: 4000,
-		easing: cubicOut
-	});
+    let state: "name" | "play" | "none" = "none"
 
-    let dimension = 300;
-
-    radius.set(dimension)
+    onMount(() => {
+        state = "name"
+    })
 </script>
 
-<div class="background-circle" style="width: {dimension}px; height: {dimension}px;"></div>
-<div class="foreground-circle" style="width: {$radius}px; height: {$radius}px;"></div>
+{#if state == "name"}
+    <main transition:fly="{{ y: 200, duration: 2000 }}">
+        <h1>Hello there. What's your name?</h1>
+        <input />
+    </main>
+{:else if state == "play"}
+    <Circle />
+{/if}
 
 <style>
-    div {
-        position: absolute;
+    main {
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        border-radius: 50%;
-    }
-
-    .foreground-circle {
-        background-color: rgba(0, 0, 255, 0.5);
-    }
-
-    .background-circle {
-        background-color: rgba(0, 0, 255, 0.1);
+        display: flex;
+        flex-direction: column;
     }
 </style>
