@@ -1,25 +1,22 @@
 <script lang="ts">
     import "../app.css" 
-    import { Canvas, Layer, t, type Render } from "svelte-canvas";
 
-    let render: Render;
-    $: render = ({ context, width, height }) => {
-        context.beginPath();
-        context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI);
-        context.fillStyle = "rgba(0, 0, 255, 0.1)";
-        context.fill();
-    };
+    let dimension = 300;
 </script>
 
-<Canvas width={300} height={300} class="canvas">
-    <Layer {render} />
-</Canvas>
+<div class="background-circle" style="width: {dimension}px; height: {dimension}px;"></div>
+<div class="foreground-circle"></div>
 
 <style>
-    :global(.canvas) {
+    div {
+        position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        position: absolute;
+        border-radius: 50%;
+    }
+
+    .background-circle {
+        background-color: rgba(0, 0, 255, 0.1);
     }
 </style>
